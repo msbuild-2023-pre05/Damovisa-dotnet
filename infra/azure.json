@@ -1,0 +1,61 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "webAppName": {
+      "type": "string",
+      "metadata": {
+        "description": "Web Application Name"
+      }
+    },
+    "environment": {
+      "type": "string",
+      "metadata": {
+        "description": "Environment"
+      }
+    },
+    "region": {
+      "type": "string",
+      "metadata": {
+        "description": "Azure Region"
+      }
+    }
+  },
+  "variables": {
+    "appServicePlanName": "[concat('ghu22-plan-', parameters('environment'), '-', uniqueString(resourceGroup().name))]",
+    "siteName": "[concat(parameters('webAppName'), '-', parameters('environment'))]"
+  },
+  "resources": [
+    {
+      "name": "[variables('siteName')]",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2016-08-01",
+      "location": "[parameters('region')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
+      ],
+      "properties": {
+        "name": "[variables('siteName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
+      }
+    },
+    {
+      "name": "[variables('appServicePlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2018-02-01",
+      "location": "[parameters('region')]",
+      "sku": {
+        "name": "B1",
+        "capacity": 1
+      },
+      "tags": {
+        "displayName": "demo"
+      },
+      "properties": {
+        "name": "[variables('appServicePlanName')]"
+      }
+    }
+  ],
+  "outputs": {},
+  "functions": []
+}
