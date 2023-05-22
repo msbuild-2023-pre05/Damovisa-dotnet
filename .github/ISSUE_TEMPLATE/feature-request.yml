@@ -6,45 +6,45 @@ labels: ["enhancement"]
 body:
 - type: markdown
   attributes:
-  value: |
-      :tada: Thanks for Suggesting a new feature! :tada:
+    value: |
+        :tada: Thanks for Suggesting a new feature! :tada:
 
-      Use this form to supply details about the feature you'd like to see.
+        Use this form to supply details about the feature you'd like to see.
 
 - id: description
   type: textarea
   attributes:
-  label: Description
-  description: "Describe the feature including where in the site it should live and what it should do"
+    label: Description
+    description: "Describe the feature including where in the site it should live and what it should do"
   validations:
-  required: true
+    required: true
 
 - id: owner
   type: input
   attributes:
-  label: Owner 
-  description: Who would own this feature
-  placeholder: "@username"
+    label: Owner 
+    description: Who would own this feature
+    placeholder: "@username"
 
 - id: typeoffeature
   type: dropdown
   attributes:
-  label: Type of Feature
-  description: "Is the feature entirely new, an enhancement, or a variation on an existing feature?"
-  options:
-      - New
-      - Enhancement
-      - Variation
+    label: Type of Feature
+    description: "Is the feature entirely new, an enhancement, or a variation on an existing feature?"
+    options:
+        - New
+        - Enhancement
+        - Variation
   validations:
-  required: true
+    required: true
     
 - id: affectedareas
   type: checkboxes
   attributes:
-  label: Areas Affected
-  description: "What areas of the application will this affect?"
-  options:
-      - label: Login/Authentication
-      - label: Admin pages
-      - label: Public-facing pages
-      - label: Back-end and database
+    label: Areas Affected
+    description: "What areas of the application will this affect?"
+    options:
+        - label: Login/Authentication
+        - label: Admin pages
+        - label: Public-facing pages
+        - label: Back-end and database
